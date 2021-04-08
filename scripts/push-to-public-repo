@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# create a new local for-candidate branch with no git history
+git branch -D for-candidate
+git checkout --orphan for-candidate
+
+# replace README contents
+echo "# Anova Technical Interview - React Webapp
+
+This repo contains the starter code for Anova's React technical interview. It is not expected that you are
+familiar with this code before the start of the interview, but feel free to take a look around if you'd like." > README.md
+
+# add starter code
+git add .
+
+# force push to public repo
+git commit -m "starter code for candidates"
+git remote add public git@github.com:anova-culinary/react-interview-webapp-public.git
+git push -f public for-candidate
+
+# check out back to working branch
+git checkout -
